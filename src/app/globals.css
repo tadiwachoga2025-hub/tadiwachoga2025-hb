@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors - Gold & Black Luxury Palette */
+    --color-primary: #FFC300;
+    --color-primary-dark: #FFD700;
+    --color-primary-light: #FFE066;
+    --color-primary-lighter: #FFF3B0;
+    --color-primary-tint: #FFF9DB;
+    --color-primary-bg: #FFFCEE;
+
+    /* Text Colors */
+    --color-black: #000000;
+    --color-dark: #333333;
+    --color-text: #333333;
+    --color-muted: #666666;
+    --color-light-muted: #737373;
+    --color-lighter-muted: #595959;
+
+    /* Backgrounds */
+    --color-bg-white: #FFFFFF;
+    --color-bg-light: #F5F5F5;
+    --color-bg-card: #F0F0F0;
+    --color-bg-beige: #F9F9F9;
+    --color-border: #E0E0E0;
+
+    /* Accent Colors - Tech/Security */
+    --color-teal: #2B5F6F;
+    --color-teal-dark: #1A4A5A;
+    --color-teal-light: #3D7A8C;
+    --color-cyan: #00BCD4;
+    --color-cyan-light: #20B2AA;
+    --color-cyan-neon: #00E5FF;
+    --color-orange: #FF6B35;
+    --color-orange-light: #FF7F00;
+
+    /* Status Colors */
+    --color-success: #16b364;
+    --color-success-alt: #10B981;
+    --color-blue: #3b82f6;
+    --color-blue-dark: #155eef;
+    --color-warning: #F59E0B;
+    --color-danger: #DC2626;
+
+    /* Glassmorphic */
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.8);
+
+    /* Overlay */
+    --color-overlay: rgba(0, 0, 0, 0.5);
+
+    /* Theme transition duration */
+    --theme-transition: 200ms;
+  }
+
+  /* Dark Mode Color Scheme */
+  .dark {
+    /* Primary Colors - Adjusted for dark backgrounds */
+    --color-primary: #FFC300;
+    --color-primary-dark: #FFDB4D;
+    --color-primary-light: #FFE066;
+    --color-primary-lighter: #332700;
+    --color-primary-tint: #1A1400;
+    --color-primary-bg: #0D0A00;
+
+    /* Text Colors - Inverted for dark mode */
+    --color-black: #FFFFFF;
+    --color-dark: #F5F5F5;
+    --color-text: #E5E5E5;
+    --color-muted: #A3A3A3;
+    --color-light-muted: #8A8A8A;
+    --color-lighter-muted: #A3A3A3;
+
+    /* Backgrounds - Dark surfaces */
+    --color-bg-white: #0A0A0A;
+    --color-bg-light: #141414;
+    --color-bg-card: #1A1A1A;
+    --color-bg-beige: #111111;
+    --color-border: #2D2D2D;
+
+    /* Accent Colors - Brightened for dark mode */
+    --color-teal: #4A8A9C;
+    --color-teal-dark: #3D7A8C;
+    --color-teal-light: #5BA5B8;
+    --color-cyan: #22D3EE;
+    --color-cyan-light: #34D1C4;
+    --color-cyan-neon: #00F5FF;
+    --color-orange: #FF8A5B;
+    --color-orange-light: #FF9F2E;
+
+    /* Status Colors - Adjusted for visibility */
+    --color-success: #22C55E;
+    --color-success-alt: #34D399;
+    --color-blue: #60A5FA;
+    --color-blue-dark: #3B82F6;
+    --color-warning: #FBBF24;
+    --color-danger: #F87171;
+
+    /* Glassmorphic - Dark glass effect */
+    --glass-bg: rgba(10, 10, 10, 0.85);
+    --glass-border: rgba(45, 45, 45, 0.8);
+
+    /* Overlay */
+    --color-overlay: rgba(0, 0, 0, 0.7);
+
+    color-scheme: dark;
+  }
+
+  html {
+    height: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    height: 100%;
+    font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Smooth transition between themes */
+    background-color: var(--color-bg-white);
+    color: var(--color-text);
+    transition: background-color var(--theme-transition) ease-in-out,
+                color var(--theme-transition) ease-in-out;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Apply theme transition to common elements */
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+    transition-duration: var(--theme-transition);
+    transition-timing-function: ease-in-out;
+  }
+}
+
+@layer components {
+  /* Premium Button Styles */
+  .btn-primary {
+    @apply px-[18px] py-[15px] rounded-full bg-primary text-black font-medium;
+    @apply transition-all duration-150 ease-[cubic-bezier(0.455,0.03,0.515,0.955)];
+    @apply shadow-sm hover:shadow-md hover:rounded-2xl;
+    @apply dark:text-black dark:bg-primary dark:hover:bg-primary-dark;
+  }
+
+  .btn-secondary {
+    @apply px-[18px] py-[15px] rounded-full border border-black text-black font-medium;
+    @apply transition-all duration-150 ease-[cubic-bezier(0.455,0.03,0.515,0.955)];
+    @apply hover:rounded-2xl hover:bg-black/5;
+    @apply dark:border-white dark:text-white dark:hover:bg-white/10;
+  }
+
+  /* Glassmorphic Card */
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/85 rounded-xl;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.8), 0 8px 32px 0 rgba(0,0,0,0.12);
+    filter: drop-shadow(0 4px 6px rgba(30,30,44,0.15));
+  }
+
+  .dark .glass-card {
+    @apply bg-slate-900/85;
+    box-shadow: inset 0 0 0 1px rgba(45,45,45,0.8), 0 8px 32px 0 rgba(0,0,0,0.4);
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+  }
+
+  /* Animated Underline */
+  .nav-link {
+    @apply relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 ease-out;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
