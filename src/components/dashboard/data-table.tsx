@@ -61,7 +61,7 @@ export function DataTable<T extends Record<string, unknown>>({
             <tr>
               <td
                 colSpan={columns.length}
-                className="px-6 py-16 text-center text-sm text-muted"
+                className="px-6 py-16 text-center text-sm text-muted-foreground"
               >
                 No data available
               </td>

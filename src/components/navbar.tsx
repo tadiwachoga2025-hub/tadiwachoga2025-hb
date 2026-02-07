@@ -8,7 +8,7 @@ import { buttonAnimation } from "@/lib/motion";
 import { ThemeToggle, ThemeToggleCompact } from "./theme-toggle";
 
 const navLinks = [
-  { label: "Features", href: "/dashboard" },
+  { label: "Features", href: "/portfolio" },
   { label: "Solutions", href: "/solutions/operations" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },

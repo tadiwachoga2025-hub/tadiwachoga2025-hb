@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ShieldAlert, Clock, Eye, LucideIcon, LayoutDashboard, Activity, ShieldCheck } from "lucide-react";
 import { SectionHeader } from "@/components/section-header";
@@ -86,24 +87,45 @@ export function SolutionSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,195,0,0.05),transparent)] pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-7xl">
-        <SectionHeader
-          badge="OUR APPROACH"
-          badgeVariant="dark"
-          headline="One Platform. Complete Control."
-          subheadline="Suburban Security replaces scattered tools with a single, intelligent platform that connects every part of your security operations."
-          light
-        />
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {solutions.map((item, i) => (
-            <FeatureCard
-              key={item.title}
-              number={i + 1}
-              title={item.title}
-              description={item.desc}
-              icon={item.icon}
-              delay={i}
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <SectionHeader
+              badge="OUR APPROACH"
+              badgeVariant="dark"
+              headline="One Platform. Complete Control."
+              subheadline="Suburban Security replaces scattered tools with a single, intelligent platform that connects every part of your security operations."
+              light
+              align="left"
             />
-          ))}
+            <div className="mt-12 grid gap-6">
+              {solutions.map((item, i) => (
+                <div key={item.title} className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                  <div className="h-10 w-10 flex items-center justify-center rounded-xl bg-primary text-black flex-shrink-0">
+                    <item.icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-white">{item.title}</h3>
+                    <p className="text-sm text-white/60">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative h-[500px] overflow-hidden rounded-3xl group"
+          >
+            <Image
+              src="/images/hero-security.png"
+              alt="Security team in action"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent opacity-60" />
+          </motion.div>
         </div>
       </div>
     </motion.section>
@@ -147,31 +169,43 @@ export function CTASection() {
       whileInView="visible"
       viewport={viewportOnce}
       variants={fadeUp}
-      className="flex flex-col items-center gap-10 bg-black px-6 lg:px-16 py-28 text-center"
+      className="relative flex flex-col items-center gap-10 bg-black px-6 lg:px-16 py-32 text-center overflow-hidden"
     >
-      <h2 className="max-w-3xl text-section font-normal leading-tight text-white">
-        Ready to Modernize Your Security Operations?
-      </h2>
-      <p className="max-w-xl text-lg text-white/70">
-        Join 150+ security companies that have transformed their operations with Suburban Security.
-      </p>
-      <div className="flex flex-wrap justify-center gap-4">
-        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-          <Link
-            href="/contact"
-            className="inline-block rounded-full bg-primary px-[18px] py-[15px] font-medium text-black shadow-sm transition-all duration-150 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-          >
-            Get Started
-          </Link>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-          <Link
-            href="/contact"
-            className="inline-block rounded-full border border-white/30 px-[18px] py-[15px] font-medium text-white transition-all duration-150 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-          >
-            Contact Sales
-          </Link>
-        </motion.div>
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/hero-security.png"
+          alt="Security background"
+          fill
+          className="object-cover opacity-40 grayscale"
+        />
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
+
+      <div className="relative z-10 flex flex-col items-center gap-8">
+        <h2 className="max-w-3xl text-[44px] font-black leading-tight text-white tracking-tight">
+          Ready to Modernize Your Security Operations?
+        </h2>
+        <p className="max-w-xl text-xl text-white/70">
+          Join 150+ security companies that have transformed their operations with Suburban Security.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4 mt-4">
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link
+              href="/signup"
+              className="inline-block rounded-xl bg-primary px-10 py-5 font-bold text-black shadow-xl transition-all duration-150 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              Start Free Trial
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link
+              href="/contact"
+              className="inline-block rounded-xl border border-white/50 bg-white/10 backdrop-blur-md px-10 py-5 font-bold text-white transition-all duration-150 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              Talk to Sales
+            </Link>
+          </motion.div>
+        </div>
       </div>
     </motion.section>
   );

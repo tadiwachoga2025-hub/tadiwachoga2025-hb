@@ -56,7 +56,7 @@ export function Footer() {
             className="col-span-2"
           >
             <p className="text-2xl font-medium text-dark">Suburban Security</p>
-            <p className="mt-4 max-w-xs text-sm leading-5 text-muted">
+            <p className="mt-4 max-w-xs text-sm leading-5 text-muted-foreground">
               The Intelligence Layer for Modern Security Operations
             </p>
 
@@ -67,7 +67,7 @@ export function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-border bg-white text-muted transition-all duration-150 hover:border-dark hover:text-dark"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-border bg-white text-muted-foreground transition-all duration-150 hover:border-dark hover:text-dark"
                 >
                   <social.icon className="h-4 w-4" />
                 </Link>
@@ -93,7 +93,7 @@ export function Footer() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="text-sm text-muted transition-colors hover:text-dark"
+                    className="text-sm text-muted-foreground transition-colors hover:text-dark"
                   >
                     {link.label}
                   </Link>
@@ -106,7 +106,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-8 border-t border-slate-border pt-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p className="text-sm text-muted">
+            <p className="text-sm text-muted-foreground">
               © 2026 Suburban Security. All rights reserved.
             </p>
             <div className="flex gap-6">
@@ -114,7 +114,7 @@ export function Footer() {
                 <Link
                   key={item}
                   href="#"
-                  className="text-sm text-muted transition-colors hover:text-dark"
+                  className="text-sm text-muted-foreground transition-colors hover:text-dark"
                 >
                   {item}
                 </Link>
@@ -126,4 +126,3 @@ export function Footer() {
     </footer>
   );
 }
-
