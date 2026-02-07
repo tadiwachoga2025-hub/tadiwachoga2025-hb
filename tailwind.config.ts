@@ -10,7 +10,52 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Primary Colors
+        // Shadcn-compatible tokens
+        foreground: "#333333",
+        card: {
+          DEFAULT: "#FFFFFF",
+          foreground: "#333333",
+        },
+        muted: {
+          DEFAULT: "#F5F5F5",
+          foreground: "#595959",
+        },
+        accent: {
+          DEFAULT: "#F9F9F9",
+          foreground: "#333333",
+        },
+        secondary: {
+          DEFAULT: "#F5F5F5",
+          foreground: "#333333",
+        },
+        background: "#FFFFFF",
+        border: "#E0E0E0",
+        destructive: {
+          DEFAULT: "#DC2626",
+          foreground: "#FFFFFF",
+        },
+        input: "#E0E0E0",
+        ring: "#FFC300",
+        // Portfolio Pulse Dashboard Colors
+        portfolio: {
+          // Align Portfolio Pulse with landing page palette
+          primary: "#FFC300",       // Gold - primary actions
+          "primary-dark": "#FFD700",
+          "primary-light": "#FFE066",
+          bg: "#F5F5F5",            // Light Grey - page backgrounds
+          card: "#FFFFFF",          // White - cards
+          border: "#E0E0E0",        // Border color
+          text: "#333333",          // Dark text
+          "text-muted": "#595959",  // Muted text
+          // Semantic colors (match landing page status colors)
+          growth: "#16b364",
+          "growth-light": "#DCFCE7",
+          risk: "#DC2626",
+          "risk-light": "#FEE2E2",
+          stable: "#F59E0B",
+          "stable-light": "#FEF3C7",
+        },
+        // Primary Colors (existing)
         primary: {
           DEFAULT: "#FFC300",
           dark: "#FFD700",
@@ -18,6 +63,7 @@ const config: Config = {
           lighter: "#FFF3B0",
           tint: "#FFF9DB",
           bg: "#FFFCEE",
+          foreground: "#000000",
         },
         black: "#000000",
         dark: "#333333",
@@ -71,7 +117,18 @@ const config: Config = {
       },
       fontFamily: {
         primary: ["Figtree", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
         mono: ["Geist Mono", "monospace"],
+      },
+      borderRadius: {
+        "portfolio": "10px",
+        "portfolio-sm": "8px",
+      },
+      boxShadow: {
+        "portfolio-sm": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+        "portfolio": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)",
+        "portfolio-md": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
+        "portfolio-lg": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)",
       },
       fontSize: {
         'hero': ['56px', { lineHeight: '60px', letterSpacing: '-0.02em' }],
@@ -115,4 +172,3 @@ const config: Config = {
 };
 
 export default config;
-

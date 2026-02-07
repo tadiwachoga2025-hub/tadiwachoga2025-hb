@@ -2,10 +2,11 @@
 
 import { useState, FormEvent } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/auth-context";
 import { motion } from "framer-motion";
-import { Shield, Mail, Lock, User, AlertCircle, Loader2, Check, X } from "lucide-react";
+import { Shield, Mail, Lock, User, AlertCircle, Loader2, Check, X, ArrowLeft } from "lucide-react";
 import { buttonAnimation } from "@/lib/motion";
 
 export default function SignUpPage() {
@@ -57,7 +58,7 @@ export default function SignUpPage() {
     const result = await signup(name, email, password);
 
     if (result.success) {
-      router.push("/dashboard");
+      router.push("/portfolio");
     } else {
       setError(result.error || "Sign up failed");
       setIsLoading(false);
@@ -67,11 +68,16 @@ export default function SignUpPage() {
   return (
     <div className="min-h-screen flex">
       {/* Left Side - Brand */}
-      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#0F172A] to-slate-900 items-center justify-center p-12 relative overflow-hidden">
-        {/* Abstract background decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-yellow-500 blur-[120px]" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500 blur-[120px]" />
+      <div className="hidden lg:flex flex-1 relative items-center justify-center p-12 overflow-hidden bg-black">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/hero-security.png"
+            alt="Suburban Security tactical team"
+            fill
+            className="object-cover opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
         </div>
 
         <motion.div
@@ -80,11 +86,11 @@ export default function SignUpPage() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-lg text-white relative z-10"
         >
-          <Shield className="h-16 w-16 mb-8 opacity-90" />
+          <Shield className="h-16 w-16 mb-8 opacity-90 text-primary" />
           <h2 className="text-4xl font-black mb-6 leading-tight tracking-tight">
             Join the Intelligence Layer for Modern Security
           </h2>
-          <p className="text-lg text-slate-300 leading-relaxed mb-8">
+          <p className="text-lg text-white/80 leading-relaxed mb-8">
             Manage your entire security operations from one powerful platform.
             Real-time insights, compliance automation, and team alignment.
           </p>
@@ -96,10 +102,10 @@ export default function SignUpPage() {
               "Advanced officer monitoring",
             ].map((feature, i) => (
               <div key={i} className="flex items-center gap-3">
-                <div className="h-6 w-6 rounded-full bg-yellow-500 text-slate-900 flex items-center justify-center flex-shrink-0">
+                <div className="h-6 w-6 rounded-full bg-primary text-black flex items-center justify-center flex-shrink-0">
                   <Check className="h-4 w-4" />
                 </div>
-                <p className="text-slate-100 font-medium">{feature}</p>
+                <p className="text-white font-medium">{feature}</p>
               </div>
             ))}
           </div>
@@ -107,7 +113,7 @@ export default function SignUpPage() {
       </div>
 
       {/* Right Side - Form */}
-      <div className="flex-1 flex items-center justify-center px-6 py-12 bg-white">
+      <div className="flex-1 flex items-center justify-center px-6 py-12 bg-background dark:bg-[#0A0A0A]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -121,10 +127,18 @@ export default function SignUpPage() {
                 <Shield className="h-7 w-7 text-primary" />
               </div>
               <div>
-                <p className="text-lg font-extrabold text-black">SUBURBAN</p>
+                <p className="text-lg font-extrabold text-dark dark:text-white">SUBURBAN</p>
                 <p className="text-xs font-extrabold tracking-widest text-slate-muted">SECURITY</p>
               </div>
             </div>
+          </Link>
+
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-900 transition mb-6"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to home
           </Link>
 
           {/* Header */}
@@ -148,14 +162,14 @@ export default function SignUpPage() {
           )}
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4">
             {/* Full Name */}
             <div>
-              <label htmlFor="name" className="block text-sm font-bold text-slate-700 mb-2">
+              <label htmlFor="name" className="block text-sm font-bold text-slate-700 mb-1.5">
                 Full Name
               </label>
               <div className="relative">
-                <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <input
                   id="name"
                   type="text"
@@ -163,7 +177,7 @@ export default function SignUpPage() {
                   onChange={(e) => setName(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="w-full pl-12 pr-4 py-3.5 border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent disabled:bg-slate-50 disabled:cursor-not-allowed transition"
+                  className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent disabled:bg-slate-50 disabled:cursor-not-allowed transition"
                   placeholder="Officer Name"
                 />
               </div>
@@ -171,11 +185,11 @@ export default function SignUpPage() {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-bold text-slate-700 mb-2">
+              <label htmlFor="email" className="block text-sm font-bold text-slate-700 mb-1.5">
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <input
                   id="email"
                   type="email"
@@ -183,7 +197,7 @@ export default function SignUpPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="w-full pl-12 pr-4 py-3.5 border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent disabled:bg-slate-50 disabled:cursor-not-allowed transition"
+                  className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent disabled:bg-slate-50 disabled:cursor-not-allowed transition"
                   placeholder="name@company.com"
                 />
               </div>
@@ -191,11 +205,11 @@ export default function SignUpPage() {
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-bold text-slate-700 mb-2">
+              <label htmlFor="password" className="block text-sm font-bold text-slate-700 mb-1.5">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <input
                   id="password"
                   type="password"
@@ -203,7 +217,7 @@ export default function SignUpPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="w-full pl-12 pr-4 py-3.5 border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent disabled:bg-slate-50 disabled:cursor-not-allowed transition"
+                  className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent disabled:bg-slate-50 disabled:cursor-not-allowed transition"
                   placeholder="Security credential"
                 />
               </div>
@@ -235,11 +249,11 @@ export default function SignUpPage() {
 
             {/* Confirm Password */}
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-bold text-slate-700 mb-2">
+              <label htmlFor="confirmPassword" className="block text-sm font-bold text-slate-700 mb-1.5">
                 Confirm Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <input
                   id="confirmPassword"
                   type="password"
@@ -247,7 +261,7 @@ export default function SignUpPage() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="w-full pl-12 pr-4 py-3.5 border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent disabled:bg-slate-50 disabled:cursor-not-allowed transition"
+                  className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent disabled:bg-slate-50 disabled:cursor-not-allowed transition"
                   placeholder="Verify credential"
                 />
                 {confirmPassword && (
@@ -290,7 +304,7 @@ export default function SignUpPage() {
               whileHover={!isLoading ? buttonAnimation.whileHover : undefined}
               whileTap={!isLoading ? buttonAnimation.whileTap : undefined}
               transition={buttonAnimation.transition}
-              className="w-full py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-black shadow-[0_4px_20px_-4px_rgba(15,23,42,0.3)] focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center justify-center gap-2"
+              className="w-full py-2.5 bg-slate-900 text-white text-sm font-bold rounded-lg hover:bg-black shadow-[0_4px_20px_-4px_rgba(15,23,42,0.3)] focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center justify-center gap-2"
             >
               {isLoading ? (
                 <>

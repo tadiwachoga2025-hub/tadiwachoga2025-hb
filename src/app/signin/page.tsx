@@ -2,10 +2,11 @@
 
 import { useState, FormEvent } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/auth-context";
 import { motion } from "framer-motion";
-import { Shield, Mail, Lock, AlertCircle, Loader2 } from "lucide-react";
+import { Shield, Mail, Lock, AlertCircle, Loader2, ArrowLeft } from "lucide-react";
 import { buttonAnimation } from "@/lib/motion";
 
 export default function SignInPage() {
@@ -24,7 +25,7 @@ export default function SignInPage() {
     const result = await login(email, password);
 
     if (result.success) {
-      router.push("/dashboard");
+      router.push("/portfolio");
     } else {
       setError(result.error || "Sign in failed");
       setIsLoading(false);
@@ -34,7 +35,7 @@ export default function SignInPage() {
   return (
     <div className="min-h-screen flex">
       {/* Left Side - Form */}
-      <div className="flex-1 flex items-center justify-center px-6 py-12 bg-white">
+      <div className="flex-1 flex items-center justify-center px-6 py-12 bg-white dark:bg-black">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -52,6 +53,14 @@ export default function SignInPage() {
                 <p className="text-xs font-extrabold tracking-widest text-slate-muted">SECURITY</p>
               </div>
             </div>
+          </Link>
+
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-muted hover:text-slate-900 transition mb-6"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to home
           </Link>
 
           {/* Header */}
@@ -168,14 +177,25 @@ export default function SignInPage() {
       </div>
 
       {/* Right Side - Brand */}
-      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#1E1E4D] to-slate-900 items-center justify-center p-12">
+      <div className="hidden lg:flex flex-1 relative items-center justify-center p-12 overflow-hidden bg-black">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/hero-security.png"
+            alt="Suburban Security tactical team"
+            fill
+            className="object-cover opacity-50"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        </div>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-lg text-white"
+          className="max-w-lg text-white relative z-10"
         >
-          <Shield className="h-16 w-16 mb-8 opacity-90" />
+          <Shield className="h-16 w-16 mb-8 opacity-90 text-primary" />
           <h2 className="text-4xl font-bold mb-6 leading-tight">
             Enterprise Security Management Platform
           </h2>

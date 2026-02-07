@@ -211,7 +211,7 @@ function StatsBar() {
 
   return (
     <motion.div
-      className="mt-8 flex items-center gap-6 border-t border-dark/10 pt-6"
+      className="mt-8 flex items-center gap-6 border-t border-dark/10 dark:border-white/10 pt-6"
       initial="hidden"
       animate="visible"
       variants={{
@@ -230,10 +230,10 @@ function StatsBar() {
         >
           <stat.icon className="h-4 w-4 text-primary" aria-hidden="true" />
           <div className="flex flex-col">
-            <span className="text-lg font-bold text-dark">
+            <span className="text-lg font-bold text-dark dark:text-white">
               <AnimatedCounter value={stat.value} suffix={stat.suffix} />
             </span>
-            <span className="text-[10px] uppercase tracking-wider text-muted">
+            <span className="text-[10px] uppercase tracking-wider text-muted-foreground dark:text-slate-400">
               {stat.label}
             </span>
           </div>
@@ -274,11 +274,10 @@ function CTAButton({
       )}
       <Link
         href={href}
-        className={`relative inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
-          isPrimary
-            ? "bg-black text-white shadow-lg hover:shadow-xl"
-            : "border border-dark/20 text-dark hover:bg-dark/5"
-        }`}
+        className={`relative inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 ${isPrimary
+            ? "bg-black dark:bg-white text-white dark:text-black shadow-lg hover:shadow-xl"
+            : "border border-dark/20 dark:border-white/20 text-dark dark:text-white hover:bg-dark/5 dark:hover:bg-white/10"
+          }`}
       >
         {children}
         {isPrimary && (
@@ -448,8 +447,8 @@ export function HeroSection() {
               className="h-full w-full"
             >
               <Image
-                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80"
-                alt="Security operations command center showing real-time monitoring displays and data visualization"
+                src="/images/hero-security.png"
+                alt="Suburban Security tactical team on duty"
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
